@@ -1,0 +1,16 @@
+{
+  "name": "Skill_Gap",
+  "version": "1.0.0",
+  "description": "My Application",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "xlsx": "^0.8.0"
+  }
+}

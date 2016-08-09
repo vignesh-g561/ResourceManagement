@@ -1,0 +1,7 @@
+<html>
+<body>
+<script>
+console.log(output.json);
+</script>
+</body>
+</html>

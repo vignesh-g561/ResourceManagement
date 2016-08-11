@@ -14,7 +14,7 @@ router.route('/:EmpId')
         for(var i=0;i<Employees.length;i++){
           if(Employees[i]['Emp No'] == id){
             console.log(Employees[i]['Emp No']);
-            console.log(id);
+            //console.log(id);
             employee = Employees[i];
             break;
           }

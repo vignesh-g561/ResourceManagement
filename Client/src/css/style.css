@@ -1,11 +1,28 @@
 .pHeader{
-  background-color: black;
+  background-color: #004D40;
   color: white;
   text-align: center;
   margin-top: -20px;
   padding-top: 30px;
   padding-bottom: 30px;
 }
+nav{
+  background-color: #004D40;
+}
+nav ul li a {
+  color: white;
+}
+
 .table{
   font-size: 15px;
+}
+.thead-inverse{
+  background-color: #009688;
+  color: white;
+}
+.navBar{
+  margin-top: 0px;
+}
+.table-responsive{
+  margin-top: -25px;
 }

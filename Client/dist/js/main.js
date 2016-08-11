@@ -22941,10 +22941,10 @@ var EmployeeData = React.createClass({displayName: "EmployeeData",
 
 render:function(){
   var data = this.props.jData;
-  var count=0;
+  var count=1;
   return(
     React.createElement("div", {className: "table-responsive"}, 
-    React.createElement("table", {className: "table table-hover"}, 
+    React.createElement("table", {className: "table table-hover table-bordered"}, 
       React.createElement("thead", {className: "thead-inverse"}, 
         React.createElement("tr", null, 
           React.createElement("th", null, "Sl. No"), 
@@ -22994,6 +22994,7 @@ module.exports = EmployeeData;
 
 },{"react":199,"react-router":27}],201:[function(require,module,exports){
 var React = require('react');
+var Navbar=require('./Navbar');
 var EmployeeData=require('./EmployeeData');
 var Home = React.createClass({displayName: "Home",
 
@@ -23022,9 +23023,7 @@ var Home = React.createClass({displayName: "Home",
       var data = this.state.jsonData;
         return (
           	React.createElement("div", null, 
-              React.createElement("div", {className: "pHeader"}, 
-                React.createElement("h1", null, "Resource Management System")
-              ), 
+              React.createElement(Navbar, null), 
               React.createElement("div", {className: "container-fluid"}, 
                 React.createElement(EmployeeData, {jData: data})
               )
@@ -23035,7 +23034,7 @@ var Home = React.createClass({displayName: "Home",
 
 module.exports = Home;
 
-},{"./EmployeeData":200,"react":199}],202:[function(require,module,exports){
+},{"./EmployeeData":200,"./Navbar":204,"react":199}],202:[function(require,module,exports){
 var React = require('react');
 var Router = require('react-router');
 var RouteHandler = Router.RouteHandler;
@@ -23055,14 +23054,78 @@ module.exports = Master;
 
 },{"react":199,"react-router":27}],203:[function(require,module,exports){
 var React = require('react');
+var Navbar=require('./Navbar');
+var Metrics = React.createClass({displayName: "Metrics",
+    render:function(){
+        return (
+          	React.createElement("div", null, 
+            React.createElement(Navbar, null), 
+            React.createElement("center", null, React.createElement("h1", null, "Metrics Page"))
+          	)
+        );
+    }
+});
 
+module.exports = Metrics;
+
+},{"./Navbar":204,"react":199}],204:[function(require,module,exports){
+var React = require('react');
+var Link = require('react-router').Link;
+var Navbar = React.createClass({displayName: "Navbar",
+    render:function(){
+        return (
+          	React.createElement("div", null, 
+              React.createElement("div", {className: "pHeader"}, 
+                React.createElement("h1", null, "Resource Management System")
+              ), 
+              React.createElement("div", {className: "navBar"}, 
+                React.createElement("nav", {className: "navbar"}, 
+                  React.createElement("ul", {className: "nav navbar-nav"}, 
+                    React.createElement("li", null, React.createElement(Link, {to: "Home"}, "Home")), 
+                    React.createElement("li", null, React.createElement(Link, {to: "Metrics"}, "Metrics"))
+                  )
+                )
+              )
+          	)
+        );
+    }
+});
+
+module.exports = Navbar;
+
+},{"react":199,"react-router":27}],205:[function(require,module,exports){
+var React = require('react');
+var Navbar=require('./Navbar');
 var Profile = React.createClass({displayName: "Profile",
+
+  getInitialState:function(){
+    return({eData:{}});
+  },
+
+  componentWillMount :function(){
+
+             $.ajax({
+                   url : "http://localhost:9090/employees/"+this.props.params.id,
+                   dataType : 'json',
+                   type : "GET",
+                   cache : false,
+                   success : function(data){
+                     this.setState({eData:data})
+                     //console.log(JSON.stringify(data));
+                   }.bind(this),
+                   error : function(xhr, status, err) {
+                   console.error("http://localhost:9090/employees/"+this.props.params.id, status, err.toString());
+                   }.bind(this)
+                 });
+  },
+
   render : function(){
     console.log("Profile"+this.props.params.id);
     return (
       React.createElement("div", null, 
+        React.createElement(Navbar, null), 
         React.createElement("center", null, React.createElement("h1", null, "Profile")), 
-        React.createElement("h3", null, "Profil Id: ", this.props.params.id)
+        React.createElement("h3", null, JSON.stringify(this.state.eData))
       )
     )
   }
@@ -23070,7 +23133,7 @@ var Profile = React.createClass({displayName: "Profile",
 
 module.exports = Profile;
 
-},{"react":199}],204:[function(require,module,exports){
+},{"./Navbar":204,"react":199}],206:[function(require,module,exports){
 var React = require('react');
 var Router = require('react-router');
 var routes = require('./routes.js');
@@ -23080,21 +23143,25 @@ Router.run(routes, Router.HistoryLocation, function(Root){
   React.render(React.createElement(Root, null), document.body);
 });
 
-},{"./routes.js":205,"react":199,"react-dom":2,"react-router":27}],205:[function(require,module,exports){
+},{"./routes.js":207,"react":199,"react-dom":2,"react-router":27}],207:[function(require,module,exports){
 var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
 var DefaultRoute = Router.DefaultRoute;
 var Master = require('./components/Master');
 var Home = require('./components/Home');
+var HomePage = require('./components/Home');
 var Profile = require('./components/Profile');
+var Metrics = require('./components/Metrics');
 module.exports = (
 React.createElement(Route, null, 
   React.createElement(Route, {handler: Master}, 
-      React.createElement(DefaultRoute, {handler: Home, name: "Home"})
+      React.createElement(DefaultRoute, {handler: Home, name: "HomePage"})
   ), 
+  React.createElement(Route, {handler: Home, name: "Home", path: "/Home"}), 
+  React.createElement(Route, {handler: Metrics, name: "Metrics", path: "/Metrics"}), 
   React.createElement(Route, {handler: Profile, name: "Profile", path: "/:id"})
 )
 );
 
-},{"./components/Home":201,"./components/Master":202,"./components/Profile":203,"react":199,"react-router":27}]},{},[204]);
+},{"./components/Home":201,"./components/Master":202,"./components/Metrics":203,"./components/Profile":205,"react":199,"react-router":27}]},{},[206]);

@@ -13,9 +13,9 @@ describe("Testing the userAll : ", function(err) {
       .end(function(err, res) {
         should.not.exist(err);
         var myObj = JSON.parse(res.text);
-        console.log(myObj);
+        //console.log(myObj);
         var msg = "DATABASE CONTAINS USERS";
-        console.log(msg);
+        //console.log(msg);
         done();
       });
   });
@@ -25,13 +25,13 @@ describe("Testing the userAll : ", function(err) {
 describe("Testing the singleUser : ", function(err) {
   it("Should handle and send the json data", function(done) {
     url
-      .get("/103099")
+      .get("/10309966")
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         should.not.exist(err);
         var myObj = JSON.parse(res.text);
-        
+
         if(myObj === "Search not found")
         {
           var msg = "user not exist";

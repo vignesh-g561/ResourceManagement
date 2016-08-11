@@ -1,53 +1,48 @@
 var React = require('react');
 var Link = require('react-router').Link;
-var EmployeeData = React.createClass({
+var EmpData = React.createClass({
 
 render:function(){
   var data = this.props.jData;
   var count=0;
   return(
     <div>
-      <div className="row">
-          <th>Sl. No</th>
-          <th>Emp No</th>
-          <th>Emp Name</th>
-          <th>Mentor</th>
-          <th>Technology/Skills</th>
-          <th>Digithon Cleared? (Y/N/NA)</th>
-          <th>Digital Academy Complete? (Y/N/NA)</th>
-          <th>Digital Academy Type</th>
-          <th>Digital Academy Completion Date</th>
-          <th>Agile Trainings Complete? (Y/N)</th>
-          <th>BFSI Training Courses Complete? (Y/N)</th>
-          <th>Skill Gap Trainings Complete? (Y/N)</th>
-          <th>Skill Gap</th>
+      <div className="row table table-responsive">
+          <div className="col-sm-1">Emp No</div>
+          <div className="col-sm-1">Emp Name</div>
+          <div className="col-sm-1">Mentor</div>
+          <div className="col-sm-1">Technology/Skills</div>
+          <div className="col-sm-1">Digithon Cleared? (Y/N/NA)</div>
+          <div className="col-sm-1">Digital Academy Complete? (Y/N/NA)</div>
+          <div className="col-sm-1">Digital Academy Type</div>
+          <div className="col-sm-1">Digital Academy Completion Date</div>
+          <div className="col-sm-1">Agile Trainings Complete? (Y/N)</div>
+          <div className="col-sm-1">BFSI Training Courses Complete? (Y/N)</div>
+          <div className="col-sm-1">Skill Gap Trainings Complete? (Y/N)</div>
+          <div className="col-sm-1">Skill Gap</div>
       </div>
-      <tbody>
     {
       data.map(function(d){
         return(
-          <tr>
-            <th scope="row">{count++}</th>
-            <td><Link to={"/"+d['Emp No']}>{d['Emp No']}</Link></td>
-            <td>{d['Emp Name']}</td>
-            <td>{d['Mentor']}</td>
-            <td>{d['Technology/Skills']}</td>
-            <td>{d['Digithon Cleared? (Y/N/NA)']}</td>
-            <td>{d['Digital Academy Complete? (Y/N/NA)']}</td>
-            <td>{d['Digital Academy Type']}</td>
-            <td>{d['Digital Academy Completion Date']}</td>
-            <td>{d['Agile Trainings Complete? (Y/N)']}</td>
-            <td>{d['BFSI Training Courses Complete? (Y/N)']}</td>
-            <td>{d['Skill Gap Trainings Complete? (Y/N)']}</td>
-            <td>{d['Skill Gap']}</td>
-          </tr>
+          <div className="row table table-responsive">
+            <div className="col-sm-1"><Link to={"/"+d['Emp No']}>{d['Emp No']}</Link></div>
+            <div className="col-sm-1">{d['Emp Name']}</div>
+            <div className="col-sm-1">{d['Mentor']}</div>
+            <div className="col-sm-1">{d['Technology/Skills']}</div>
+            <div className="col-sm-1">{d['Digithon Cleared? (Y/N/NA)']}</div>
+            <div className="col-sm-1">{d['Digital Academy Complete? (Y/N/NA)']}</div>
+            <div className="col-sm-1">{d['Digital Academy Type']}</div>
+            <div className="col-sm-1">{d['Digital Academy Completion Date']}</div>
+            <div className="col-sm-1">{d['Agile Trainings Complete? (Y/N)']}</div>
+            <div className="col-sm-1">{d['BFSI Training Courses Complete? (Y/N)']}</div>
+            <div className="col-sm-1">{d['Skill Gap Trainings Complete? (Y/N)']}</div>
+            <div className="col-sm-1">{d['Skill Gap']}</div>
+          </div>
        );
       })
     }
-      </tbody>
-      </table>
     </div>
   );
 }
 });
-module.exports = EmployeeData;
+module.exports = EmpData;

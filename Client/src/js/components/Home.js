@@ -1,4 +1,5 @@
 var React = require('react');
+var Navbar=require('./Navbar');
 var EmployeeData=require('./EmployeeData');
 var Home = React.createClass({
 
@@ -27,9 +28,7 @@ var Home = React.createClass({
       var data = this.state.jsonData;
         return (
           	<div>
-              <div className="pHeader">
-                <h1>Resource Management System</h1>
-              </div>
+              <Navbar />
               <div className="container-fluid">
                 <EmployeeData jData={data} />
               </div>

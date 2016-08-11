@@ -4,10 +4,10 @@ var EmployeeData = React.createClass({
 
 render:function(){
   var data = this.props.jData;
-  var count=0;
+  var count=1;
   return(
     <div className="table-responsive">
-    <table className="table table-hover">
+    <table className="table table-hover table-bordered">
       <thead className="thead-inverse">
         <tr>
           <th>Sl. No</th>

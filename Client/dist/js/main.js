@@ -23124,8 +23124,39 @@ var Profile = React.createClass({displayName: "Profile",
     return (
       React.createElement("div", null, 
         React.createElement(Navbar, null), 
-        React.createElement("center", null, React.createElement("h1", null, "Profile")), 
-        React.createElement("h3", null, JSON.stringify(this.state.eData))
+        React.createElement("div", {className: "container"}, 
+          React.createElement("div", {className: "row"}, 
+            React.createElement("div", {className: "col-md-12"}, 
+            React.createElement("div", {className: "panel panel-default"}, 
+              React.createElement("div", {className: "panel-heading"}, React.createElement("h2", null, "User profile")), 
+              React.createElement("div", {className: "panel-body"}, 
+                React.createElement("div", {className: "row"}, 
+                  React.createElement("div", {className: "col-md-4 text-center"}, 
+                    React.createElement("img", {className: "img-circle avatar avatar-original", src: "../../images/user.png", alt: "user image"})
+                  ), 
+                  React.createElement("div", {className: "col-md-8"}, 
+                    React.createElement("div", {className: "row"}, 
+                      React.createElement("div", {className: "col-md-12"}, 
+                        React.createElement("h1", {className: "only-bottom-margin"}, this.state.eData["Emp Name"])
+                      )
+                    ), 
+                    React.createElement("div", {className: "row"}, 
+                      React.createElement("div", {className: "col-md-6"}, 
+                        React.createElement("span", {className: "text-muted"}, "Employee Id:"), " ", this.state.eData["Emp No"], React.createElement("br", null), 
+                        React.createElement("span", {className: "text-muted"}, "Technology/Skills:"), " ", this.state.eData["Technology/Skills"], React.createElement("br", null), 
+                        React.createElement("span", {className: "text-muted"}, "Digithon Cleared? (Y/N/NA):"), " ", this.state.eData["Digithon Cleared? (Y/N/NA)"], React.createElement("br", null), 
+                        React.createElement("span", {className: "text-muted"}, "Digital Academy Complete? (Y/N/NA):"), " ", this.state.eData["Digital Academy Complete? (Y/N/NA)"], React.createElement("br", null), 
+                        React.createElement("span", {className: "text-muted"}, "Agile Trainings Complete? (Y/N):"), " ", this.state.eData["Agile Trainings Complete? (Y/N)"], React.createElement("br", null), 
+                        React.createElement("span", {className: "text-muted"}, "BFSI Training Courses Complete? (Y/N):"), " ", this.state.eData["BFSI Training Courses Complete? (Y/N)"], React.createElement("br", null)
+                      )
+                    )
+                  )
+                )
+              )
+            )
+            )
+          )
+        )
       )
     )
   }

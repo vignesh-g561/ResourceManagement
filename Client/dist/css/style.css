@@ -1,6 +1,6 @@
 .pHeader{
   background-color: #004D40;
-  color: white;
+  color: #FFFFFF;
   text-align: center;
   margin-top: -20px;
   padding-top: 30px;
@@ -10,7 +10,7 @@ nav{
   background-color: #004D40;
 }
 nav ul li a {
-  color: white;
+  color: #FFFFFF;
 }
 
 .table{
@@ -18,11 +18,19 @@ nav ul li a {
 }
 .thead-inverse{
   background-color: #009688;
-  color: white;
+  color: #FFFFFF;
 }
 .navBar{
   margin-top: 0px;
 }
 .table-responsive{
   margin-top: -25px;
+}
+.panel-default > .panel-heading {
+	background-color: #009688;
+	color:#FFFFFF;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-radius: 4px 4px 0px 0px;
+	border-bottom: 1px solid #0074BD;
 }

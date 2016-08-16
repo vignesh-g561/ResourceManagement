@@ -36,7 +36,7 @@ var Profile = React.createClass({
               <div className="panel-body">
                 <div className="row">
                   <div className="col-md-4 text-center">
-                    <img className="img-circle avatar avatar-original" src="../../images/user.png" alt="user image" />
+                    <img className="img-circle avatar avatar-original" src="../../images/user1.png" alt="user image" />
                   </div>
                   <div className="col-md-8">
                     <div className="row">

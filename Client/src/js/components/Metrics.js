@@ -6,7 +6,7 @@ var Metrics = React.createClass({
         return (
           	<div>
             <Navbar />
-            <center><h1>Metrics Page</h1></center>
+            <center><h1>Bar Graph</h1></center>
             <BarGraph />
           	</div>
         );

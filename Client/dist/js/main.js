@@ -23055,12 +23055,14 @@ module.exports = Master;
 },{"react":199,"react-router":27}],203:[function(require,module,exports){
 var React = require('react');
 var Navbar=require('./Navbar');
+var BarGraph=require('../pages/BarGraph');
 var Metrics = React.createClass({displayName: "Metrics",
     render:function(){
         return (
           	React.createElement("div", null, 
             React.createElement(Navbar, null), 
-            React.createElement("center", null, React.createElement("h1", null, "Metrics Page"))
+            React.createElement("center", null, React.createElement("h1", null, "Bar Graph")), 
+            React.createElement(BarGraph, null)
           	)
         );
     }
@@ -23068,7 +23070,7 @@ var Metrics = React.createClass({displayName: "Metrics",
 
 module.exports = Metrics;
 
-},{"./Navbar":204,"react":199}],204:[function(require,module,exports){
+},{"../pages/BarGraph":207,"./Navbar":204,"react":199}],204:[function(require,module,exports){
 var React = require('react');
 var Link = require('react-router').Link;
 var Navbar = React.createClass({displayName: "Navbar",
@@ -23132,7 +23134,7 @@ var Profile = React.createClass({displayName: "Profile",
               React.createElement("div", {className: "panel-body"}, 
                 React.createElement("div", {className: "row"}, 
                   React.createElement("div", {className: "col-md-4 text-center"}, 
-                    React.createElement("img", {className: "img-circle avatar avatar-original", src: "../../images/user.png", alt: "user image"})
+                    React.createElement("img", {className: "img-circle avatar avatar-original", src: "../../images/user1.png", alt: "user image"})
                   ), 
                   React.createElement("div", {className: "col-md-8"}, 
                     React.createElement("div", {className: "row"}, 
@@ -23174,7 +23176,77 @@ Router.run(routes, Router.HistoryLocation, function(Root){
   React.render(React.createElement(Root, null), document.body);
 });
 
-},{"./routes.js":207,"react":199,"react-dom":2,"react-router":27}],207:[function(require,module,exports){
+},{"./routes.js":208,"react":199,"react-dom":2,"react-router":27}],207:[function(require,module,exports){
+var React = require('react');
+var barGraphData = require("../../../../Server/D3Graph.json");
+var BarGraph = React.createClass({displayName: "BarGraph",
+  getInitialState:function(){
+    return({
+    gData :[],
+
+  });
+  },
+  render : function(){
+    var outerWidth = 900;
+    var outerHeight = 500;
+    var margin = { left:500, top: 20, right: 20, bottom: 100 };
+    var barPadding = 0.05;
+    var xColumn = "Skil Set";
+    var yColumn = "Employees";
+    var xAxisLabelOffset = 48;
+    var yAxisLabelOffset = 60;
+    var innerWidth  = outerWidth  - margin.left - margin.right;
+    var innerHeight = outerHeight - margin.top  - margin.bottom;
+    var svg = d3.select("body").append("svg")
+      .attr("width",  outerWidth)
+      .attr("height", outerHeight);
+    var g = svg.append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    var xAxisG = g.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + innerHeight + ")");
+    var xAxisLabel = xAxisG.append("text")
+      .style("text-anchor", "middle")
+      .attr("transform", "translate(" + (innerWidth / 2) + "," + xAxisLabelOffset + ")")
+      .attr("class", "label")
+      .text(xColumn);
+    var yAxisG = g.append("g")
+        .attr("class", "y axis");
+    var yAxisLabel = yAxisG.append("text")
+        .style("text-anchor", "middle")
+        .attr("transform", "translate(-" + yAxisLabelOffset + "," + (innerHeight / 2) + ") rotate(-90)")
+        .attr("class", "label")
+        .text(yColumn);
+    var xScale = d3.scale.ordinal().rangeBands([0, innerWidth],barPadding);
+    var yScale = d3.scale.linear().range([innerHeight, 0]);
+    var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
+    var yAxis = d3.svg.axis().scale(yScale).orient("left");
+    //  console.log(JSON.stringify(data));
+      console.log("Data"+JSON.stringify(barGraphData));
+      xScale.domain(       barGraphData.map( function (d){ return d[xColumn]; }));
+          yScale.domain([0, d3.max(barGraphData, function (d){ return d[yColumn]; })]);
+
+          xAxisG.call(xAxis);
+          yAxisG.call(yAxis);
+
+          var bars = g.selectAll("rect").data(barGraphData);
+          bars.enter().append("rect")
+            .attr("width", xScale.rangeBand());
+          bars
+            .attr("x",      function (d){ return               xScale(d[xColumn]); })
+            .attr("y",      function (d){ return               yScale(d[yColumn]); })
+            .attr("height", function (d){ return innerHeight - yScale(d[yColumn]); });
+          bars.exit().remove();
+    return (
+      React.createElement("div", null
+      )
+    )
+  }
+});
+
+module.exports = BarGraph;
+
+},{"../../../../Server/D3Graph.json":209,"react":199}],208:[function(require,module,exports){
 var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
@@ -23195,4 +23267,6 @@ React.createElement(Route, null,
 )
 );
 
-},{"./components/Home":201,"./components/Master":202,"./components/Metrics":203,"./components/Profile":205,"react":199,"react-router":27}]},{},[206]);
+},{"./components/Home":201,"./components/Master":202,"./components/Metrics":203,"./components/Profile":205,"react":199,"react-router":27}],209:[function(require,module,exports){
+module.exports=[{"Skil Set":"Agile","Employees":9},{"Skil Set":"MERN","Employees":6},{"Skil Set":"BFSI","Employees":7}]
+},{}]},{},[206]);

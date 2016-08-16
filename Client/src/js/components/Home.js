@@ -26,6 +26,7 @@ var Home = React.createClass({
       },
     render:function(){
       var data = this.state.jsonData;
+      d3.selectAll("svg").remove();//for clearing existing svg element
         return (
           	<div>
               <Navbar />

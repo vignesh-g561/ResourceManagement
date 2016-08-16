@@ -23021,6 +23021,7 @@ var Home = React.createClass({displayName: "Home",
       },
     render:function(){
       var data = this.state.jsonData;
+      d3.selectAll("svg").remove();//for clearing existing svg element
         return (
           	React.createElement("div", null, 
               React.createElement(Navbar, null), 
@@ -23180,12 +23181,6 @@ Router.run(routes, Router.HistoryLocation, function(Root){
 var React = require('react');
 var barGraphData = require("../../../../Server/D3Graph.json");
 var BarGraph = React.createClass({displayName: "BarGraph",
-  getInitialState:function(){
-    return({
-    gData :[],
-
-  });
-  },
   render : function(){
     var outerWidth = 900;
     var outerHeight = 500;
@@ -23197,6 +23192,7 @@ var BarGraph = React.createClass({displayName: "BarGraph",
     var yAxisLabelOffset = 60;
     var innerWidth  = outerWidth  - margin.left - margin.right;
     var innerHeight = outerHeight - margin.top  - margin.bottom;
+    d3.selectAll("svg").remove();//for clearing existing svg element
     var svg = d3.select("body").append("svg")
       .attr("width",  outerWidth)
       .attr("height", outerHeight);
@@ -23221,7 +23217,6 @@ var BarGraph = React.createClass({displayName: "BarGraph",
     var yScale = d3.scale.linear().range([innerHeight, 0]);
     var xAxis = d3.svg.axis().scale(xScale).orient("bottom");
     var yAxis = d3.svg.axis().scale(yScale).orient("left");
-    //  console.log(JSON.stringify(data));
       console.log("Data"+JSON.stringify(barGraphData));
       xScale.domain(       barGraphData.map( function (d){ return d[xColumn]; }));
           yScale.domain([0, d3.max(barGraphData, function (d){ return d[yColumn]; })]);

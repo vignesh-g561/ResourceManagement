@@ -22937,88 +22937,88 @@ module.exports = require('./lib/React');
 },{"./lib/React":72}],200:[function(require,module,exports){
 var React = require('react');
 var Link = require('react-router').Link;
-var EmployeeData = React.createClass({displayName: "EmployeeData",
 
+var EmployeeData = React.createClass({displayName: "EmployeeData",
 render:function(){
   var data = this.props.jData;
   var count=1;
   return(
     React.createElement("div", {className: "table-responsive"}, 
-    React.createElement("table", {className: "table table-hover table-bordered"}, 
-      React.createElement("thead", {className: "thead-inverse"}, 
-        React.createElement("tr", null, 
-          React.createElement("th", null, "Sl. No"), 
-          React.createElement("th", null, "Emp No"), 
-          React.createElement("th", null, "Emp Name"), 
-          React.createElement("th", null, "Mentor"), 
-          React.createElement("th", null, "Technology/Skills"), 
-          React.createElement("th", null, "Digithon Cleared? (Y/N/NA)"), 
-          React.createElement("th", null, "Digital Academy Complete? (Y/N/NA)"), 
-          React.createElement("th", null, "Digital Academy Type"), 
-          React.createElement("th", null, "Digital Academy Completion Date"), 
-          React.createElement("th", null, "Agile Trainings Complete? (Y/N)"), 
-          React.createElement("th", null, "BFSI Training Courses Complete? (Y/N)"), 
-          React.createElement("th", null, "Skill Gap Trainings Complete? (Y/N)"), 
-          React.createElement("th", null, "Skill Gap")
-        )
-      ), 
-      React.createElement("tbody", null, 
-    
-      data.map(function(d){
-        return(
+      React.createElement("table", {className: "table table-hover table-bordered"}, 
+        React.createElement("thead", {className: "thead-inverse"}, 
           React.createElement("tr", null, 
-            React.createElement("th", {scope: "row"}, count++), 
-            React.createElement("td", null, React.createElement(Link, {to: "/"+d['Emp No']}, d['Emp No'])), 
-            React.createElement("td", null, d['Emp Name']), 
-            React.createElement("td", null, d['Mentor']), 
-            React.createElement("td", null, d['Technology/Skills']), 
-            React.createElement("td", null, d['Digithon Cleared? (Y/N/NA)']), 
-            React.createElement("td", null, d['Digital Academy Complete? (Y/N/NA)']), 
-            React.createElement("td", null, d['Digital Academy Type']), 
-            React.createElement("td", null, d['Digital Academy Completion Date']), 
-            React.createElement("td", null, d['Agile Trainings Complete? (Y/N)']), 
-            React.createElement("td", null, d['BFSI Training Courses Complete? (Y/N)']), 
-            React.createElement("td", null, d['Skill Gap Trainings Complete? (Y/N)']), 
-            React.createElement("td", null, d['Skill Gap'])
+            React.createElement("th", null, "Sl. No"), 
+            React.createElement("th", null, "Emp No"), 
+            React.createElement("th", null, "Emp Name"), 
+            React.createElement("th", null, "Mentor"), 
+            React.createElement("th", null, "Technology/Skills"), 
+            React.createElement("th", null, "Digithon Cleared? (Y/N/NA)"), 
+            React.createElement("th", null, "Digital Academy Complete? (Y/N/NA)"), 
+            React.createElement("th", null, "Digital Academy Type"), 
+            React.createElement("th", null, "Digital Academy Completion Date"), 
+            React.createElement("th", null, "Agile Trainings Complete? (Y/N)"), 
+            React.createElement("th", null, "BFSI Training Courses Complete? (Y/N)"), 
+            React.createElement("th", null, "Skill Gap Trainings Complete? (Y/N)"), 
+            React.createElement("th", null, "Skill Gap")
           )
-       );
-      })
-    
-      )
+        ), 
+        React.createElement("tbody", null, 
+          
+            data.map(function(d){
+              return(
+                React.createElement("tr", null, 
+                  React.createElement("th", {scope: "row"}, count++), 
+                  React.createElement("td", null, React.createElement(Link, {to: "/"+d['Emp No']}, d['Emp No'])), 
+                  React.createElement("td", null, d['Emp Name']), 
+                  React.createElement("td", null, d['Mentor']), 
+                  React.createElement("td", null, d['Technology/Skills']), 
+                  React.createElement("td", null, d['Digithon Cleared? (Y/N/NA)']), 
+                  React.createElement("td", null, d['Digital Academy Complete? (Y/N/NA)']), 
+                  React.createElement("td", null, d['Digital Academy Type']), 
+                  React.createElement("td", null, d['Digital Academy Completion Date']), 
+                  React.createElement("td", null, d['Agile Trainings Complete? (Y/N)']), 
+                  React.createElement("td", null, d['BFSI Training Courses Complete? (Y/N)']), 
+                  React.createElement("td", null, d['Skill Gap Trainings Complete? (Y/N)']), 
+                  React.createElement("td", null, d['Skill Gap'])
+                )
+             );
+            })
+          
+        )
       )
     )
   );
 }
 });
+
 module.exports = EmployeeData;
 
 },{"react":199,"react-router":27}],201:[function(require,module,exports){
 var React = require('react');
 var Navbar=require('./Navbar');
 var EmployeeData=require('./EmployeeData');
-var Home = React.createClass({displayName: "Home",
 
+var Home = React.createClass({displayName: "Home",
     getInitialState:function(){
       return({
       jsonData :[],
-
     });
     },
-      componentDidMount :function(){
-               $.ajax({
-                     url : "http://localhost:9090/employees/all",
-                     dataType : 'json',
-                     type : "GET",
-                     cache : false,
-                     success : function(data){
-                       this.setState({jsonData:data})
-                       //console.log(JSON.stringify(data));
-                     }.bind(this),
-                     error : function(xhr, status, err) {
-                     console.error("http://localhost:9090/employees/all", status, err.toString());
-                     }.bind(this)
-                   });
-      },
+    componentDidMount :function(){
+      $.ajax({
+             url : "http://localhost:9090/employees/all",
+             dataType : 'json',
+             type : "GET",
+             cache : false,
+             success : function(data){
+               this.setState({jsonData:data})
+               //console.log(JSON.stringify(data));
+             }.bind(this),
+             error : function(xhr, status, err) {
+             console.error("http://localhost:9090/employees/all", status, err.toString());
+             }.bind(this)
+           });
+    },
     render:function(){
       var data = this.state.jsonData;
       d3.selectAll("svg").remove();//for clearing existing svg element
@@ -23057,13 +23057,14 @@ module.exports = Master;
 var React = require('react');
 var Navbar=require('./Navbar');
 var BarGraph=require('../pages/BarGraph');
+
 var Metrics = React.createClass({displayName: "Metrics",
     render:function(){
         return (
           	React.createElement("div", null, 
-            React.createElement(Navbar, null), 
-            React.createElement("center", null, React.createElement("h1", null, "Bar Graph")), 
-            React.createElement(BarGraph, null)
+              React.createElement(Navbar, null), 
+              React.createElement("center", null, React.createElement("h1", null, "Bar Graph")), 
+              React.createElement(BarGraph, null)
           	)
         );
     }
@@ -23099,65 +23100,66 @@ module.exports = Navbar;
 },{"react":199,"react-router":27}],205:[function(require,module,exports){
 var React = require('react');
 var Navbar=require('./Navbar');
-var Profile = React.createClass({displayName: "Profile",
 
+var Profile = React.createClass({displayName: "Profile",
   getInitialState:function(){
     return({eData:{}});
   },
-
   componentWillMount :function(){
-
-             $.ajax({
-                   url : "http://localhost:9090/employees/"+this.props.params.id,
-                   dataType : 'json',
-                   type : "GET",
-                   cache : false,
-                   success : function(data){
-                     this.setState({eData:data})
-                     //console.log(JSON.stringify(data));
-                   }.bind(this),
-                   error : function(xhr, status, err) {
-                   console.error("http://localhost:9090/employees/"+this.props.params.id, status, err.toString());
-                   }.bind(this)
-                 });
+   $.ajax({
+         url : "http://localhost:9090/employees/"+this.props.params.id,
+         dataType : 'json',
+         type : "GET",
+         cache : false,
+         success : function(data){
+           this.setState({eData:data})
+           //console.log(JSON.stringify(data));
+         }.bind(this),
+         error : function(xhr, status, err) {
+         console.error("http://localhost:9090/employees/"+this.props.params.id, status, err.toString());
+         }.bind(this)
+       });
   },
-
   render : function(){
-    console.log("Profile"+this.props.params.id);
+    //console.log("Profile"+this.props.params.id);
     return (
       React.createElement("div", null, 
         React.createElement(Navbar, null), 
         React.createElement("div", {className: "container"}, 
           React.createElement("div", {className: "row"}, 
-            React.createElement("div", {className: "col-md-12"}, 
-            React.createElement("div", {className: "panel panel-default"}, 
-              React.createElement("div", {className: "panel-heading"}, React.createElement("h2", null, "User profile")), 
-              React.createElement("div", {className: "panel-body"}, 
-                React.createElement("div", {className: "row"}, 
-                  React.createElement("div", {className: "col-md-4 text-center"}, 
-                    React.createElement("img", {className: "img-circle avatar avatar-original", src: "../../images/user1.png", alt: "user image"})
-                  ), 
-                  React.createElement("div", {className: "col-md-8"}, 
-                    React.createElement("div", {className: "row"}, 
-                      React.createElement("div", {className: "col-md-12"}, 
-                        React.createElement("h1", {className: "only-bottom-margin"}, this.state.eData["Emp Name"])
-                      )
-                    ), 
-                    React.createElement("div", {className: "row"}, 
-                      React.createElement("div", {className: "col-md-6"}, 
-                        React.createElement("span", {className: "text-muted"}, "Employee Id:"), " ", this.state.eData["Emp No"], React.createElement("br", null), 
-                        React.createElement("span", {className: "text-muted"}, "Technology/Skills:"), " ", this.state.eData["Technology/Skills"], React.createElement("br", null), 
-                        React.createElement("span", {className: "text-muted"}, "Digithon Cleared? (Y/N/NA):"), " ", this.state.eData["Digithon Cleared? (Y/N/NA)"], React.createElement("br", null), 
-                        React.createElement("span", {className: "text-muted"}, "Digital Academy Complete? (Y/N/NA):"), " ", this.state.eData["Digital Academy Complete? (Y/N/NA)"], React.createElement("br", null), 
-                        React.createElement("span", {className: "text-muted"}, "Agile Trainings Complete? (Y/N):"), " ", this.state.eData["Agile Trainings Complete? (Y/N)"], React.createElement("br", null), 
-                        React.createElement("span", {className: "text-muted"}, "BFSI Training Courses Complete? (Y/N):"), " ", this.state.eData["BFSI Training Courses Complete? (Y/N)"], React.createElement("br", null)
-                      )
-                    )
-                  )
-                )
+            React.createElement("center", null, React.createElement("img", {className: "img-circle avatar avatar-original", src: "../../images/user1.png", alt: "user image"}), 
+            React.createElement("h1", {className: "only-bottom-margin"}, this.state.eData["Emp Name"]))
+          ), 
+          React.createElement("br", null), React.createElement("br", null), 
+          React.createElement("div", {className: "row col-md-8 col-md-offset-2"}, 
+          React.createElement("div", {className: "table-responsive"}, 
+            React.createElement("table", {className: "table table-hover table-bordered"}, 
+              React.createElement("tr", null, 
+                React.createElement("th", null, "Employee Id"), 
+                React.createElement("td", null, this.state.eData["Emp No"])
+              ), 
+              React.createElement("tr", null, 
+                React.createElement("th", null, "Technology/Skills"), 
+                React.createElement("td", null, this.state.eData["Technology/Skills"])
+              ), 
+              React.createElement("tr", null, 
+                React.createElement("th", null, "Digithon Cleared? (Y/N/NA)"), 
+                React.createElement("td", null, this.state.eData["Digithon Cleared? (Y/N/NA)"])
+              ), 
+              React.createElement("tr", null, 
+                React.createElement("th", null, "Digital Academy Complete? (Y/N/NA)"), 
+                React.createElement("td", null, this.state.eData["Digital Academy Complete? (Y/N/NA)"])
+              ), 
+              React.createElement("tr", null, 
+                React.createElement("th", null, "Agile Trainings Complete? (Y/N)"), 
+                React.createElement("td", null, this.state.eData["Agile Trainings Complete? (Y/N)"])
+              ), 
+              React.createElement("tr", null, 
+                React.createElement("th", null, "BFSI Training Courses Complete? (Y/N)"), 
+                React.createElement("td", null, this.state.eData["BFSI Training Courses Complete? (Y/N)"])
               )
             )
-            )
+          )
           )
         )
       )

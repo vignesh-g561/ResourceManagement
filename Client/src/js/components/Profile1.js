@@ -11,7 +11,7 @@ var Profile1 = React.createClass({
   componentWillMount :function(){
 
              $.ajax({
-                   url : "http://localhost:9090/employees/"+this.props.params.id,
+                   url : "http://localhost:5000/employees/"+this.props.params.id,
                    dataType : 'json',
                    type : "GET",
                    cache : false,
@@ -20,7 +20,7 @@ var Profile1 = React.createClass({
                      //console.log(JSON.stringify(data));
                    }.bind(this),
                    error : function(xhr, status, err) {
-                   console.error("http://localhost:9090/employees/"+this.props.params.id, status, err.toString());
+                   console.error("http://localhost:5000/employees/"+this.props.params.id, status, err.toString());
                    }.bind(this)
                  });
   },

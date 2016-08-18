@@ -22972,14 +22972,45 @@ render:function(){
                   React.createElement("td", null, d['Emp Name']), 
                   React.createElement("td", null, d['Mentor']), 
                   React.createElement("td", null, d['Technology/Skills']), 
-                  React.createElement("td", null, d['Digithon Cleared? (Y/N/NA)']), 
-                  React.createElement("td", null, d['Digital Academy Complete? (Y/N/NA)']), 
+                  React.createElement("td", {style: {backgroundColor:
+                    (()=>{
+                      if(d['Digithon Cleared? (Y/N/NA)'] == 'Y') {return "#b2ff59";}
+                      else if(d['Digithon Cleared? (Y/N/NA)'] == 'NA') {return "#5c6bc0";}
+                      else {return "#ff8a65"}
+                  })()}}, d['Digithon Cleared? (Y/N/NA)']), 
+                  React.createElement("td", {style: {backgroundColor:
+                    (()=>{
+                      if(d['Digital Academy Complete? (Y/N/NA)'] == 'Y') {return "#b2ff59";}
+                      else if(d['Digital Academy Complete? (Y/N/NA)'] == 'NA') {return "#5c6bc0";}
+                      else {return "#ff8a65"}
+                  })()}}, d['Digital Academy Complete? (Y/N/NA)']), 
                   React.createElement("td", null, d['Digital Academy Type']), 
                   React.createElement("td", null, d['Digital Academy Completion Date']), 
-                  React.createElement("td", null, d['Agile Trainings Complete? (Y/N)']), 
-                  React.createElement("td", null, d['BFSI Training Courses Complete? (Y/N)']), 
-                  React.createElement("td", null, d['Skill Gap Trainings Complete? (Y/N)']), 
-                  React.createElement("td", null, d['Skill Gap'])
+                  React.createElement("td", {style: {backgroundColor:
+                    (()=>{
+                      if(d['Agile Trainings Complete? (Y/N)'] == 'Y') {return "#b2ff59";}
+                      else if(d['Agile Trainings Complete? (Y/N)'] == 'NA') {return "#5c6bc0";}
+                      else {return "#ff8a65"}
+                  })()}}, d['Agile Trainings Complete? (Y/N)']), 
+                  React.createElement("td", {style: {backgroundColor:
+                    (()=>{
+                      if(d['BFSI Training Courses Complete? (Y/N)'] == 'Y') {return "#b2ff59";}
+                      else if(d['BFSI Training Courses Complete? (Y/N)'] == 'NA') {return "#5c6bc0";}
+                      else {return "#ff8a65"}
+                  })()}}, d['BFSI Training Courses Complete? (Y/N)']), 
+                  React.createElement("td", {style: {backgroundColor:
+                    (()=>{
+                      if(d['Skill Gap Trainings Complete? (Y/N)'] == 'Y') {return "#b2ff59";}
+                      else if(d['Skill Gap Trainings Complete? (Y/N)'] == 'NA') {return "#5c6bc0";}
+                      else {return "#ff8a65"}
+                  })()}}, 
+                  d['Skill Gap Trainings Complete? (Y/N)']), 
+                  React.createElement("td", {style: {backgroundColor:
+                    (()=>{
+                      if(d['Skill Gap'] == 'Y') {return "#b2ff59";}
+                      else if(d['Skill Gap'] == 'NA') {return "#5c6bc0";}
+                      else {return "#ff8a65"}
+                  })()}}, d['Skill Gap'])
                 )
              );
             })
@@ -23006,7 +23037,7 @@ var Home = React.createClass({displayName: "Home",
     },
     componentDidMount :function(){
       $.ajax({
-             url : "http://localhost:9090/employees/all",
+             url : "http://localhost:5000/employees/all",
              dataType : 'json',
              type : "GET",
              cache : false,
@@ -23015,7 +23046,7 @@ var Home = React.createClass({displayName: "Home",
                //console.log(JSON.stringify(data));
              }.bind(this),
              error : function(xhr, status, err) {
-             console.error("http://localhost:9090/employees/all", status, err.toString());
+             console.error("http://localhost:5000/employees/all", status, err.toString());
              }.bind(this)
            });
     },
@@ -23107,7 +23138,7 @@ var Profile = React.createClass({displayName: "Profile",
   },
   componentWillMount :function(){
    $.ajax({
-         url : "http://localhost:9090/employees/"+this.props.params.id,
+         url : "http://localhost:5000/employees/"+this.props.params.id,
          dataType : 'json',
          type : "GET",
          cache : false,
@@ -23116,7 +23147,7 @@ var Profile = React.createClass({displayName: "Profile",
            //console.log(JSON.stringify(data));
          }.bind(this),
          error : function(xhr, status, err) {
-         console.error("http://localhost:9090/employees/"+this.props.params.id, status, err.toString());
+         console.error("http://localhost:5000/employees/"+this.props.params.id, status, err.toString());
          }.bind(this)
        });
   },
@@ -23228,7 +23259,8 @@ var BarGraph = React.createClass({displayName: "BarGraph",
 
           var bars = g.selectAll("rect").data(barGraphData);
           bars.enter().append("rect")
-            .attr("width", xScale.rangeBand());
+            .attr("width", xScale.rangeBand())
+            .attr("fill","#009688");;
           bars
             .attr("x",      function (d){ return               xScale(d[xColumn]); })
             .attr("y",      function (d){ return               yScale(d[yColumn]); })

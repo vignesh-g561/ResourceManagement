@@ -10,7 +10,7 @@ var Home = React.createClass({
     },
     componentDidMount :function(){
       $.ajax({
-             url : "http://localhost:9090/employees/all",
+             url : "http://localhost:5000/employees/all",
              dataType : 'json',
              type : "GET",
              cache : false,
@@ -19,7 +19,7 @@ var Home = React.createClass({
                //console.log(JSON.stringify(data));
              }.bind(this),
              error : function(xhr, status, err) {
-             console.error("http://localhost:9090/employees/all", status, err.toString());
+             console.error("http://localhost:5000/employees/all", status, err.toString());
              }.bind(this)
            });
     },

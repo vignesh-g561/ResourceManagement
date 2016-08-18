@@ -1,5 +1,5 @@
 .pHeader{
-  background-color: #000000;
+  background-color: #004D40;
   color: #FFFFFF;
   text-align: center;
   margin-top: -20px;
@@ -7,7 +7,7 @@
   padding-bottom: 30px;
 }
 nav{
-  background-color: #000000;
+  background-color: #26a69a;
 }
 nav ul li a {
   color: #FFFFFF;
@@ -17,7 +17,7 @@ nav ul li a {
   font-size: 15px;
 }
 .thead-inverse{
-  background-color: #424242;
+  background-color: #009688;
   color: #FFFFFF;
 }
 .navBar{

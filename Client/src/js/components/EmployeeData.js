@@ -35,14 +35,45 @@ render:function(){
                   <td>{d['Emp Name']}</td>
                   <td>{d['Mentor']}</td>
                   <td>{d['Technology/Skills']}</td>
-                  <td>{d['Digithon Cleared? (Y/N/NA)']}</td>
-                  <td>{d['Digital Academy Complete? (Y/N/NA)']}</td>
+                  <td style = {{backgroundColor:
+                    (()=>{
+                      if(d['Digithon Cleared? (Y/N/NA)'] == 'Y') {return "#b2ff59";}
+                      else if(d['Digithon Cleared? (Y/N/NA)'] == 'NA') {return "#5c6bc0";}
+                      else {return "#ff8a65"}
+                  })()}}>{d['Digithon Cleared? (Y/N/NA)']}</td>
+                  <td style = {{backgroundColor:
+                    (()=>{
+                      if(d['Digital Academy Complete? (Y/N/NA)'] == 'Y') {return "#b2ff59";}
+                      else if(d['Digital Academy Complete? (Y/N/NA)'] == 'NA') {return "#5c6bc0";}
+                      else {return "#ff8a65"}
+                  })()}}>{d['Digital Academy Complete? (Y/N/NA)']}</td>
                   <td>{d['Digital Academy Type']}</td>
                   <td>{d['Digital Academy Completion Date']}</td>
-                  <td>{d['Agile Trainings Complete? (Y/N)']}</td>
-                  <td>{d['BFSI Training Courses Complete? (Y/N)']}</td>
-                  <td>{d['Skill Gap Trainings Complete? (Y/N)']}</td>
-                  <td>{d['Skill Gap']}</td>
+                  <td style = {{backgroundColor:
+                    (()=>{
+                      if(d['Agile Trainings Complete? (Y/N)'] == 'Y') {return "#b2ff59";}
+                      else if(d['Agile Trainings Complete? (Y/N)'] == 'NA') {return "#5c6bc0";}
+                      else {return "#ff8a65"}
+                  })()}}>{d['Agile Trainings Complete? (Y/N)']}</td>
+                  <td style = {{backgroundColor:
+                    (()=>{
+                      if(d['BFSI Training Courses Complete? (Y/N)'] == 'Y') {return "#b2ff59";}
+                      else if(d['BFSI Training Courses Complete? (Y/N)'] == 'NA') {return "#5c6bc0";}
+                      else {return "#ff8a65"}
+                  })()}}>{d['BFSI Training Courses Complete? (Y/N)']}</td>
+                  <td style = {{backgroundColor:
+                    (()=>{
+                      if(d['Skill Gap Trainings Complete? (Y/N)'] == 'Y') {return "#b2ff59";}
+                      else if(d['Skill Gap Trainings Complete? (Y/N)'] == 'NA') {return "#5c6bc0";}
+                      else {return "#ff8a65"}
+                  })()}}>
+                  {d['Skill Gap Trainings Complete? (Y/N)']}</td>
+                  <td style = {{backgroundColor:
+                    (()=>{
+                      if(d['Skill Gap'] == 'Y') {return "#b2ff59";}
+                      else if(d['Skill Gap'] == 'NA') {return "#5c6bc0";}
+                      else {return "#ff8a65"}
+                  })()}}>{d['Skill Gap']}</td>
                 </tr>
              );
             })

@@ -46,7 +46,8 @@ var BarGraph = React.createClass({
 
           var bars = g.selectAll("rect").data(barGraphData);
           bars.enter().append("rect")
-            .attr("width", xScale.rangeBand());
+            .attr("width", xScale.rangeBand())
+            .attr("fill","#009688");;
           bars
             .attr("x",      function (d){ return               xScale(d[xColumn]); })
             .attr("y",      function (d){ return               yScale(d[yColumn]); })

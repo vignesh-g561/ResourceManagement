@@ -13,9 +13,16 @@ describe("Testing the userAll : ", function(err) {
       .end(function(err, res) {
         should.not.exist(err);
         var myObj = JSON.parse(res.text);
-        //console.log(myObj);
-        var msg = "DATABASE CONTAINS USERS";
-        //console.log(msg);
+        if(myObj.length === 6)
+        {
+          console.log(myObj.length);
+          console.log(myObj);
+          var msg = "DATABASE CONTAINS USERS";
+          console.log(msg);
+        }
+        else {
+          console.log("Error");
+        }
         done();
       });
   });
@@ -25,7 +32,7 @@ describe("Testing the userAll : ", function(err) {
 describe("Testing the singleUser : ", function(err) {
   it("Should handle and send the json data", function(done) {
     url
-      .get("/10309966")
+      .get("/123456")
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
@@ -43,5 +50,5 @@ describe("Testing the singleUser : ", function(err) {
         }
         done();
       });
-  });
+});
 });
